@@ -69,11 +69,25 @@ weights/pixelrec/toys/{best.pt,tokens_1024.pt}
 
 Put the downloaded product images at `external_data/<dataset>/images/`. These directories are ignored by Git.
 
-Download links are intentionally represented by replaceable placeholders until the Google Drive release is ready:
+Release downloads:
 
-- VLM: [official Qwen3-VL-Embedding-8B page](https://huggingface.co/Qwen/Qwen3-VL-Embedding-8B) or `GOOGLE_DRIVE_VLM_URL`
-- PixelRec/RCC weights and compressed caches: `GOOGLE_DRIVE_PIXELREC_WEIGHTS_URL`
-- Beauty/Games/Toys image archives: `GOOGLE_DRIVE_DATASETS_URL`
+- VLM: [official Qwen3-VL-Embedding-8B page](https://huggingface.co/Qwen/Qwen3-VL-Embedding-8B)
+- PixelRec/RCC weights and compressed caches: [Google Drive](https://drive.google.com/drive/folders/1ENW80IJidpnzwDHIi9cfgFbIZjKBNm56)
+- Beauty/Games/Toys image archives: [Google Drive](https://drive.google.com/drive/folders/1vWV8_0sqAoLvLDzjNEZ7GEV5pDJbaUXr)
+
+The two Google Drive downloads are split ZIP archives. Download every numbered part, the final `.zip` file, and `SHA256SUMS` from the corresponding folder. Verify, reconstruct, and extract them from the directory containing the downloaded parts:
+
+```bash
+# PixelRec/RCC weights and compressed caches
+sha256sum --check SHA256SUMS
+zip -s 0 pixelrec_weights.zip --out pixelrec_weights_full.zip
+unzip pixelrec_weights_full.zip
+
+# Beauty/Games/Toys image archives
+sha256sum --check SHA256SUMS
+zip -s 0 pixelrec_datasets.zip --out pixelrec_datasets_full.zip
+unzip pixelrec_datasets_full.zip
+```
 
 See [WEIGHTS.md](WEIGHTS.md) for the exact archive layout, SHA-256 checks, a one-item VLM functional test, and full benchmark verification for all three PixelRec checkpoints.
 
