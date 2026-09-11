@@ -1,4 +1,10 @@
-# PixelRec
+# PixelRec: From Modality-Level Fusion to Signal-Patch-Level Fusion for Multimodal Sequential Recommendation
+
+Official PyTorch implementation of **PixelRec**, by Ruijie Xiao, Bo Yang (corresponding author), and Guipeng Xv. Ruijie Xiao and Bo Yang are with the University of Electronic Science and Technology of China; Guipeng Xv is with the School of Informatics, Xiamen University.
+
+PixelRec revisits Multimodal Sequential Recommendation (MMSR) by moving beyond coarse modality-level fusion. It renders product text together with the original image as a unified visual input, encodes that input into fine-grained signal patches, and adaptively fuses the patches with a Vision-Recommendation Aggregator. A Re-Construction Compression (RCC) module reduces the GPU cost of processing these features. Across extensive experiments, PixelRec improves recommendation accuracy by 4.6%–15.9% over state-of-the-art MMSR methods such as PRISM and HM4SR.
+
+## Code Overview
 
 PixelRec is a standalone PyTorch implementation of a pixel-first sequential recommender. It renders each product image and title into one product card, extracts token-level visual states with Qwen3-VL-Embedding-8B, compresses those states with a reconstruction-based linear compressor (RCC), and trains a lightweight query aggregator with a causal sequential recommendation backbone.
 

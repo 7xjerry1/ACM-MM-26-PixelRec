@@ -3,7 +3,7 @@ import logging
 from pathlib import Path
 
 from .data import make_dataloaders, rating_matrix
-from .runtime import build_runtime, load_checkpoint, save_json, set_seed
+from .runtime import build_runtime, load_checkpoint, save_json
 from .trainer import PixelRecTrainer, save_checkpoint
 
 
@@ -16,7 +16,6 @@ def train(dataset, cache_path, output_dir, device="auto", epochs=None, batch_siz
     config, _, sequences, args, model, resolved_device = build_runtime(
         dataset, cache_path, device=device, overrides=overrides
     )
-    set_seed(args.seed)
     loaders = make_dataloaders(
         sequences, args.item_size, args.batch_size, args.max_seq_length, args.num_workers
     )

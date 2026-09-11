@@ -1,12 +1,14 @@
 import json
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 from types import SimpleNamespace
 
 import numpy as np
 import torch
 from PIL import Image
+from torch.utils.data import RandomSampler
 
 from pixelrec.compression import LinearTokenCompressor
 from pixelrec.config import load_dataset_config, verify_bundled_data
@@ -17,6 +19,7 @@ from pixelrec.preprocessing import preprocess_dataset
 from pixelrec.recommendation import score_topk
 from pixelrec.trainer import PixelRecTrainer, save_checkpoint
 from pixelrec.vlm import PixelRecVLMExtractor
+import pixelrec.training as training_module
 
 
 class DatasetTests(unittest.TestCase):
@@ -165,6 +168,49 @@ class ModelTests(unittest.TestCase):
                     model.pixelrec_token_aggregator.query_tokens,
                 )
             )
+
+
+class TrainingRandomnessTests(unittest.TestCase):
+    def test_training_preserves_rng_state_after_model_initialization(self):
+        class StopAfterRuntime(Exception):
+            pass
+
+        seed = 42
+        draws_used_by_model = 17
+        torch.manual_seed(seed)
+        torch.rand(draws_used_by_model)
+        expected_order = list(RandomSampler(range(19)))[:8]
+        observed_orders = []
+
+        def fake_build_runtime(*args, **kwargs):
+            torch.manual_seed(seed)
+            torch.rand(draws_used_by_model)
+            model_args = SimpleNamespace(
+                item_size=7,
+                batch_size=2,
+                max_seq_length=3,
+                num_workers=0,
+            )
+            return (
+                {"dataset": "tiny"},
+                {},
+                [[1, 2, 3, 4]],
+                model_args,
+                object(),
+                torch.device("cpu"),
+            )
+
+        def capture_rng_state(*args, **kwargs):
+            observed_orders.append(list(RandomSampler(range(19)))[:8])
+            raise StopAfterRuntime
+
+        with mock.patch.object(training_module, "build_runtime", side_effect=fake_build_runtime), mock.patch.object(
+            training_module, "make_dataloaders", side_effect=capture_rng_state
+        ):
+            with self.assertRaises(StopAfterRuntime):
+                training_module.train("beauty", "unused.pt", "unused-output")
+
+        self.assertEqual(observed_orders, [expected_order])
 
 
 if __name__ == "__main__":

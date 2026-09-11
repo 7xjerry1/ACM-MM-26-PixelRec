@@ -15,6 +15,11 @@ data/*/images/
 data/*/posters/
 data/*/*.gz
 data/*/*.zip
+data/**
+!data/*/
+!data/*/*.txt
+!data/*/items.jsonl
+!data/*/metadata.json
 weights/**
 !weights/README.md
 external_data/**
