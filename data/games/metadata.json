@@ -1,0 +1,19 @@
+{
+  "dataset": "games",
+  "category": "Video_Games",
+  "filter": {
+    "min_user_interactions": 5,
+    "min_item_interactions": 5
+  },
+  "num_users": 24303,
+  "num_items": 10672,
+  "num_interactions": 231780,
+  "files": {
+    "sequence": "games.txt",
+    "catalog": "items.jsonl"
+  },
+  "sequence_sha256": "a5a25a3a14b12ef1000a82f40b4fe928994fce94fa4d39a1ca5b1a21e0d00d98",
+  "catalog_sha256": "b7e032222577490ee2ce4e4b69548a40b8cbfae951bde4dff5a2b0dea37a16b5",
+  "catalog_items_with_title": 6005,
+  "catalog_items_without_title": 4667
+}

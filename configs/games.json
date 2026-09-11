@@ -1,0 +1,18 @@
+{
+  "dataset": "games",
+  "category": "Video_Games",
+  "num_users": 24303,
+  "num_items": 10672,
+  "num_interactions": 231780,
+  "files": {"sequence": "games.txt", "metadata": "metadata.json", "catalog": "items.jsonl"},
+  "sha256": {
+    "sequence": "a5a25a3a14b12ef1000a82f40b4fe928994fce94fa4d39a1ca5b1a21e0d00d98",
+    "metadata": "e26834518577f6ec0c626f1a91ad76c661fd3d5c024a01bc239bb4ede0e3e037",
+    "catalog": "b7e032222577490ee2ce4e4b69548a40b8cbfae951bde4dff5a2b0dea37a16b5"
+  },
+  "preprocessing": {"canvas_width": 384, "canvas_height": 544, "image_area_height": 384, "text_area_height": 160, "text_font_size": 22, "poster_font_size": 28, "jpeg_quality": 95},
+  "vlm": {"model": "Qwen3-VL-Embedding-8B", "instruction": "", "max_length": 8192, "min_pixels": 4096, "max_pixels": 1843200, "max_token_cache_len": 34, "pooled_grid_h": 8, "pooled_grid_w": 4, "dtype": "bfloat16", "attn_implementation": "sdpa", "batch_size": 1},
+  "compression": {"input_dim": 4096, "bottleneck_dim": 1024, "lambda1": 1.0, "lambda2": 0.1, "batch_size": 2048, "epochs": 15, "train_tokens_per_epoch": 524288, "lr": 0.001, "weight_decay": 0.0, "seed": 2026},
+  "training": {"lr": 0.0005, "batch_size": 256, "epochs": 200, "patience": 10, "num_workers": 8, "seed": 42, "weight_decay": 0.0, "adam_beta1": 0.9, "adam_beta2": 0.999, "max_seq_length": 50, "hidden_size": 256, "num_hidden_layers": 2, "hidden_act": "gelu", "num_attention_heads": 2, "attention_probs_dropout_prob": 0.5, "hidden_dropout_prob": 0.5, "initializer_range": 0.02, "pixelrec_train_stage": "transductive_ft", "pixelrec_temperature": 0.07, "pixelrec_token_cache_device": "gpu", "pixelrec_token_compute_dtype": "float32", "pixelrec_num_queries": 4, "pixelrec_attn_dim": 256, "pixelrec_dropout": 0.1},
+  "expected_metrics": {"H@5": 0.0994, "H@10": 0.1499, "H@20": 0.2210, "N@5": 0.0664, "N@10": 0.0825, "N@20": 0.1004}
+}

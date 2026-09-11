@@ -1,0 +1,19 @@
+{
+  "dataset": "beauty",
+  "category": "Beauty",
+  "filter": {
+    "min_user_interactions": 5,
+    "min_item_interactions": 5
+  },
+  "num_users": 22363,
+  "num_items": 12101,
+  "num_interactions": 198502,
+  "files": {
+    "sequence": "beauty.txt",
+    "catalog": "items.jsonl"
+  },
+  "sequence_sha256": "c6d45b28215dfd7c50dbe2fe3e145e1393e80b305650567de54498382cd17392",
+  "catalog_sha256": "e4c5afd4d6ad68786b7dc545625e28f01b8d68968f613fcd7de15cf5ee2ce3c7",
+  "catalog_items_with_title": 12094,
+  "catalog_items_without_title": 7
+}

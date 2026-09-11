@@ -1,0 +1,18 @@
+{
+  "dataset": "beauty",
+  "category": "Beauty",
+  "num_users": 22363,
+  "num_items": 12101,
+  "num_interactions": 198502,
+  "files": {"sequence": "beauty.txt", "metadata": "metadata.json", "catalog": "items.jsonl"},
+  "sha256": {
+    "sequence": "c6d45b28215dfd7c50dbe2fe3e145e1393e80b305650567de54498382cd17392",
+    "metadata": "7c1f60cf353dea31918a31876355e08e76e0a43718204d96ba904729ccfa5dfc",
+    "catalog": "e4c5afd4d6ad68786b7dc545625e28f01b8d68968f613fcd7de15cf5ee2ce3c7"
+  },
+  "preprocessing": {"canvas_width": 384, "canvas_height": 544, "image_area_height": 384, "text_area_height": 160, "text_font_size": 22, "poster_font_size": 28, "jpeg_quality": 95},
+  "vlm": {"model": "Qwen3-VL-Embedding-8B", "instruction": "", "max_length": 8192, "min_pixels": 4096, "max_pixels": 1843200, "max_token_cache_len": 34, "pooled_grid_h": 8, "pooled_grid_w": 4, "dtype": "bfloat16", "attn_implementation": "sdpa", "batch_size": 1},
+  "compression": {"input_dim": 4096, "bottleneck_dim": 1024, "lambda1": 1.0, "lambda2": 0.1, "batch_size": 2048, "epochs": 15, "train_tokens_per_epoch": 524288, "lr": 0.001, "weight_decay": 0.0, "seed": 2026},
+  "training": {"lr": 0.0005, "batch_size": 256, "epochs": 200, "patience": 10, "num_workers": 8, "seed": 42, "weight_decay": 0.0, "adam_beta1": 0.9, "adam_beta2": 0.999, "max_seq_length": 50, "hidden_size": 256, "num_hidden_layers": 2, "hidden_act": "gelu", "num_attention_heads": 2, "attention_probs_dropout_prob": 0.5, "hidden_dropout_prob": 0.5, "initializer_range": 0.02, "pixelrec_train_stage": "transductive_ft", "pixelrec_temperature": 0.07, "pixelrec_token_cache_device": "gpu", "pixelrec_token_compute_dtype": "float32", "pixelrec_num_queries": 4, "pixelrec_attn_dim": 256, "pixelrec_dropout": 0.1},
+  "expected_metrics": {"H@5": 0.0850, "H@10": 0.1194, "H@20": 0.1647, "N@5": 0.0593, "N@10": 0.0703, "N@20": 0.0817}
+}

@@ -1,0 +1,19 @@
+{
+  "dataset": "toys",
+  "category": "Toys_and_Games",
+  "filter": {
+    "min_user_interactions": 5,
+    "min_item_interactions": 5
+  },
+  "num_users": 19412,
+  "num_items": 11924,
+  "num_interactions": 167597,
+  "files": {
+    "sequence": "toys.txt",
+    "catalog": "items.jsonl"
+  },
+  "sequence_sha256": "e5d3abc035fe49be312177d003e1ce3afc307b27730cc763b2e3109891344055",
+  "catalog_sha256": "ebaa8da92f3095823f553debe70be64be662fe93902a01b60b3a1cf8b16a9298",
+  "catalog_items_with_title": 11865,
+  "catalog_items_without_title": 59
+}

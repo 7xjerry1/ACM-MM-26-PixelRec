@@ -1,0 +1,18 @@
+{
+  "dataset": "toys",
+  "category": "Toys_and_Games",
+  "num_users": 19412,
+  "num_items": 11924,
+  "num_interactions": 167597,
+  "files": {"sequence": "toys.txt", "metadata": "metadata.json", "catalog": "items.jsonl"},
+  "sha256": {
+    "sequence": "e5d3abc035fe49be312177d003e1ce3afc307b27730cc763b2e3109891344055",
+    "metadata": "3f382c4ebc9962565ed92a1e1fae5be5d07fa6ef110ec5a8adff29665fcc0cfe",
+    "catalog": "ebaa8da92f3095823f553debe70be64be662fe93902a01b60b3a1cf8b16a9298"
+  },
+  "preprocessing": {"canvas_width": 384, "canvas_height": 544, "image_area_height": 384, "text_area_height": 160, "text_font_size": 22, "poster_font_size": 28, "jpeg_quality": 95},
+  "vlm": {"model": "Qwen3-VL-Embedding-8B", "instruction": "", "max_length": 8192, "min_pixels": 4096, "max_pixels": 1843200, "max_token_cache_len": 34, "pooled_grid_h": 8, "pooled_grid_w": 4, "dtype": "bfloat16", "attn_implementation": "sdpa", "batch_size": 1},
+  "compression": {"input_dim": 4096, "bottleneck_dim": 1024, "lambda1": 1.0, "lambda2": 0.1, "batch_size": 2048, "epochs": 15, "train_tokens_per_epoch": 524288, "lr": 0.001, "weight_decay": 0.0, "seed": 2026},
+  "training": {"lr": 0.0005, "batch_size": 256, "epochs": 200, "patience": 10, "num_workers": 8, "seed": 42, "weight_decay": 0.0, "adam_beta1": 0.9, "adam_beta2": 0.999, "max_seq_length": 50, "hidden_size": 256, "num_hidden_layers": 2, "hidden_act": "gelu", "num_attention_heads": 2, "attention_probs_dropout_prob": 0.5, "hidden_dropout_prob": 0.5, "initializer_range": 0.02, "pixelrec_train_stage": "transductive_ft", "pixelrec_temperature": 0.07, "pixelrec_token_cache_device": "gpu", "pixelrec_token_compute_dtype": "float32", "pixelrec_num_queries": 4, "pixelrec_attn_dim": 256, "pixelrec_dropout": 0.1},
+  "expected_metrics": {"H@5": 0.0909, "H@10": 0.1274, "H@20": 0.1736, "N@5": 0.0628, "N@10": 0.0746, "N@20": 0.0863}
+}
