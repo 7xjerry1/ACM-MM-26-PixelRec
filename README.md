@@ -1,8 +1,8 @@
 # PixelRec: From Modality-Level Fusion to Signal-Patch-Level Fusion for Multimodal Sequential Recommendation
 
-Official PyTorch implementation of **PixelRec**, by Ruijie Xiao, Bo Yang (corresponding author), and Guipeng Xv. Ruijie Xiao and Bo Yang are with the University of Electronic Science and Technology of China; Guipeng Xv is with the School of Informatics, Xiamen University.
+Official PyTorch implementation of **PixelRec**, by Ruijie Xiao, Bo Yang (corresponding author), and Guipeng Xv. 
 
-PixelRec revisits Multimodal Sequential Recommendation (MMSR) by moving beyond coarse modality-level fusion. It renders product text together with the original image as a unified visual input, encodes that input into fine-grained signal patches, and adaptively fuses the patches with a Vision-Recommendation Aggregator. A Re-Construction Compression (RCC) module reduces the GPU cost of processing these features. Across extensive experiments, PixelRec improves recommendation accuracy by 4.6%–15.9% over state-of-the-art MMSR methods such as PRISM and HM4SR.
+PixelRec revisits Multimodal Sequential Recommendation (MMSR) by moving beyond coarse modality-level fusion. It renders product text together with the original image as a unified visual input, encodes that input into fine-grained signal patches, and adaptively fuses the patches with a Vision-Recommendation Aggregator. A Re-Construction Compression (RCC) module reduces the GPU cost of processing these features. Across extensive experiments, PixelRec improves recommendation accuracy by 4.6%–15.9% over state-of-the-art MMSR methods.
 
 ## Code Overview
 
@@ -14,14 +14,12 @@ This repository contains the exact Beauty, Video Games, and Toys interaction spl
 
 ```text
 bundled sequences + bundled catalog + downloaded product images
-    -> 384 x 544 product cards
-    -> Qwen3-VL 34 x 4096 token cache
-    -> RCC 34 x 1024 token cache
+    -> product cards
+    -> Qwen3-VL token cache
+    -> RCC token cache
     -> PixelRec training
-    -> full-sort evaluation or Top-K recommendation
+    -> evaluation
 ```
-
-The 34 VLM tokens contain the first sequence token, an `8 x 4` adaptive average pool of the visual tokens, and the last sequence token. No text prompt is sent to Qwen3-VL: the product title is part of the rendered pixels.
 
 ## Repository Layout
 
@@ -52,8 +50,6 @@ The tested environment uses Python 3.10/3.11, PyTorch 2.6.0 with CUDA 12.4, Tran
 ```bash
 pip install -r requirements.txt
 ```
-
-Qwen3-VL-Embedding-8B in bfloat16 requires a modern CUDA GPU; 24 GB or more VRAM is recommended for extraction. PixelRec can keep the compressed cache on CPU by setting the runtime device to CPU, but the reference results use GPU training and float32 token aggregation.
 
 ## Downloaded Weights and Large Dataset Assets
 
@@ -228,11 +224,6 @@ python recommend.py \
 
 The most recent 50 history items are used. Padding, unknown items, and already-seen items are never returned; unknown input IDs or ASINs are reported as errors.
 
-## Reference Hyperparameters
-
-All three datasets use Adam, learning rate `5e-4`, batch size 256, up to 200 epochs, patience 10, seed 42, maximum sequence length 50, hidden size 256, two Transformer layers, two attention heads, dropout 0.5, four PixelRec query tokens, aggregation dimension 256, aggregation dropout 0.1, and temperature 0.07. The training stage is transductive fine-tuning.
-
-Dataset-specific configuration, preprocessing, VLM, RCC, and training values are recorded in `configs/*.json`.
 
 ## Reference Results
 
